@@ -4,7 +4,7 @@ const frecuencias = Array(10).fill(0);
 // Generamos 10000 números aleatorios 
 for (let i = 0; i < 10000; i++) {
     const numeroAleatorio = Math.floor(Math.random() * 10) + 1;
-    // Restamos 1 para ajustar al índice del array (0-9)
+    // Restamos 1 para ajustar al índice del array 0-9
     frecuencias[numeroAleatorio - 1]++; 
 }
 
