@@ -11,7 +11,9 @@ function generarCombinaciones() {
       }
 
       // Conviertimos en un array y lo ordenamos
-      combinaciones.push([...numeros].sort((a, b) => a - b));
+      combinaciones.push([...numeros].sort(function(a, b) {
+        return a - b;
+      } ));
   }
   return combinaciones;
 }
