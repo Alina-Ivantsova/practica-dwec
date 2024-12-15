@@ -33,12 +33,16 @@
         return '';
       }
 
-      document.getElementById('save').addEventListener('click', function () {
+      if (getCookie('user') === "null") {
+        document.getElementById('save').addEventListener('click', function () {
         let name = document.getElementById('name').value;
         setCookie('user', name, 7);
       });
+      } else {
+        getCookie('user');
 
-      getCookie('user');
+      }
+      
     </script>
   </body>
 </html>
