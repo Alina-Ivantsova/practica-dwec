@@ -6,9 +6,10 @@
     <title>Document</title>
   </head>
   <body>
-    <form>
+    <div id="message"></div>
+    <form id="form">
       <input type="text" id="name" name="name" />
-      <button id="save" value="save">Guardar</button>
+      <button type="button" id="save" value="save">Guardar</button>
     </form>
     <script>
       function setCookie(cname, cvalue, exdays) {
@@ -33,15 +34,22 @@
         return '';
       }
 
-      if (getCookie('user') === "null") {
-        document.getElementById('save').addEventListener('click', function () {
-        let name = document.getElementById('name').value;
-        setCookie('user', name, 7);
-      });
-      } else {
-        getCookie('user');
+      let userName = getCookie('user');
 
+      if (userName) {
+        document.getElementById('message').innerText = `Bienvenid@ ${userName}!`;
+        document.getElementById('form').style.display = 'none';
       }
+
+      document.getElementById('save').addEventListener('click', function () {
+        let name = document.getElementById('name').value;
+        location.reload();
+        if (name) {
+          setCookie('user', name, 7);
+          // Recarga la página solo después de establecer la cookie, si el nombre no está vacío
+          location.reload();
+        }
+      });
       
     </script>
   </body>
