@@ -23,20 +23,40 @@
   </div>
 
   <script>
-    
+    // Se crea un array vacío que almacenará los elementos de la lista
+    const arrayList = [];
+    const list = document.getElementById('list');
+    // Todos los elementos li dentro de la lista
+    const listItem = list.getElementsByTagName('li');
+
+    // Itera sobre cada elemento li y añade el texto de cada elemento al array 
+    for (let i = 0; i < listItem.length; i ++) { 
+      arrayList.push(listItem[i].textContent);
+    }
+
+    // Se configura un temporizador que se ejecutará después de 3 segundos
     setTimeout(() => {
-    let listaOrdenada = confirm('Quieres ordenar la lista?');
+    // Se muestra el mensaje de confirmación
+    let orderConfirmation = confirm('Quieres ordenar la lista?');
 
-    if (listaOrdenada) {
-      let div = document.getElementById('box');
-      let list = document.getElementById('list');
-      box.removeChild(list);
+    // Si el usuario confirma que quiere ordenar la lista 
+    if (orderConfirmation) {
+      // Se eliminan los elementos de la lista inicial, mientras haya elementos en la lista, se elimina el primer hijo
+      while (list.firstChild) {
+        list.removeChild(list.firstChild);
+      }
+      // Ordena el array alfabéticamente
+      arrayList.sort();
 
-      
+      // Itera sobre cada elemento del array ordenado
+      // Se crea un nuevo elemento li, se le asigna el texto del elemento del array y se añade este li a la lista (ul)
+      arrayList.forEach(element => {
+        let newListItem = document.createElement('li');
+        newListItem.textContent = element;
+        list.appendChild(newListItem);
+      });
     } 
   }, 3000);
-
-
   </script>
 </body>
 </html>
