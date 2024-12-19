@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejercicio 1</title>
+  </head>
+  <body>
+    <div id="message"></div>
+    <form id="form">
+      <input type="text" id="name" name="name" />
+      <button type="button" id="save" value="save">Guardar</button>
+    </form>
+    <script>
+      // Función para establecer una cookie
+      function setCookie(cname, cvalue, exdays) {
+        var d = new Date();
+        d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
+        var expires = 'expires=' + d.toUTCString();
+        document.cookie = cname + '=' + cvalue + ';' + expires + ';path=/';
+      }
+
+      // Función para obtener el valor de una cookie por su nombre
+      function getCookie(cname) {
+        var name = cname + '=';
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+          var c = ca[i];
+          while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+          }
+          if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+          }
+        }
+        return '';
+      }
+
+      // Obtiene el valor de la cookie 'user'
+      let userName = getCookie('user');
+
+      // Si existe la cookie 'user', se cambia el contenido del mensaje y oculta el formulario
+      if (userName) {
+        document.getElementById('message').innerText = `Bienvenid@ ${userName}!`;
+        document.getElementById('form').style.display = 'none';
+      }
+
+      // Se añade un evento al botón 'save' que se ejecuta al hacer clic
+      document.getElementById('save').addEventListener('click', function () {
+        // Se obtiene el valor del input name 
+        let name = document.getElementById('name').value;
+        // Verificar si el campo de input name no está vacío
+        if (name) {
+          // Se establecer la cookie 'user' con el valor del nombre y una expiración de 7 días
+          setCookie('user', name, 7);
+          //  Se recarga la página solo después de establecer la cookie, si el nombre no está vacío
+          location.reload();
+        }
+      });
+      
+    </script>
+  </body>
+</html>

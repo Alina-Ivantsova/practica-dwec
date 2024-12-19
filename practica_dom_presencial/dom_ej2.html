@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="box">
+    <ul id="list">
+      <li>Montaña</li>
+      <li>Playa</li>
+      <li>Bosque</li>
+      <li>Isla</li>
+      <li>Desierto</li>
+      <li>Lago</li>
+      <li>Selva</li>
+      <li>Valle</li>
+      <li>Cañón</li>
+      <li>Oasis</li>
+    </ul>
+  </div>
+
+  <script>
+    // Se crea un array vacío que almacenará los elementos de la lista
+    const arrayList = [];
+    const list = document.getElementById('list');
+    // Todos los elementos li dentro de la lista
+    const listItem = list.getElementsByTagName('li');
+
+    // Itera sobre cada elemento li y añade el texto de cada elemento al array 
+    for (let i = 0; i < listItem.length; i ++) { 
+      arrayList.push(listItem[i].textContent);
+    }
+
+    // Se configura un temporizador que se ejecutará después de 3 segundos
+    setTimeout(() => {
+    // Se muestra el mensaje de confirmación
+    let orderConfirmation = confirm('Quieres ordenar la lista?');
+
+    // Si el usuario confirma que quiere ordenar la lista 
+    if (orderConfirmation) {
+      // Se eliminan los elementos de la lista inicial, mientras haya elementos en la lista, se elimina el primer hijo
+      while (list.firstChild) {
+        list.removeChild(list.firstChild);
+      }
+      // Ordena el array alfabéticamente
+      arrayList.sort();
+
+      // Itera sobre cada elemento del array ordenado
+      // Se crea un nuevo elemento li, se le asigna el texto del elemento del array y se añade este li a la lista (ul)
+      arrayList.forEach(element => {
+        let newListItem = document.createElement('li');
+        newListItem.textContent = element;
+        list.appendChild(newListItem);
+      });
+    } 
+  }, 3000);
+  </script>
+</body>
+</html>
