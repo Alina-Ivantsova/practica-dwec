@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./style/style.css">
+  <title>Pantalla 3</title>
+</head>
+<body>
+  <div id="container">
+    <div id="form-container">
+      <form id="question-form">
+        <br>
+        <label for="question">Pregunta</label>
+        <input type="text" name="question" id="question"><br><br>
+
+        <label for="answer">Verdadero</label>
+        <input type="radio" id="answer-true" name="answer" value="verdadero">
+        <label for="answer">Falso</label>
+        <input type="radio" id="answer-false" name="answer" value="falso"><br><br>
+
+        <label for="mark">Puntuación</label>
+        <input type="text" id="score" name="score" min="1" max="9" maxlength="1"><br><br>
+
+        <button type="button" id="back-button" disabled>Atrás</button>
+        <button type="submit" id="save-button" disabled>Grabar</button>
+      </form>
+    </div>
+
+  <div id="list-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Pregunta</th>
+          <th>Respuesta</th>
+          <th>Puntuación</th>
+          <th>Estado</th>
+        </tr>
+      </thead>
+      <tbody id="question-list"></tbody>
+    </table>
+  </div>
+</div>
+<script type="module" src="js/3.js"></script>
+</body>
+</html>
