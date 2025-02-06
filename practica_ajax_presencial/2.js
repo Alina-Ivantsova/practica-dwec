@@ -24,34 +24,34 @@ function clearFields() {
 
 async function procesarFetch(numsecs, userId) {
   try {
-    // 1) OBTENER USUARIO
-    const userResponse = await fetch(`${BASE_URL}${userId}?delay=${numsecs}`);
+    // Obtenemos usuario
+    const userResult = await fetch(`${BASE_URL}${userId}?delay=${numsecs}`);
 
-    if (!userResponse.ok) {
-      throw new Error(`Error ${userResponse.status}: Usuario no encontrado`);
+    if (!userResult.ok) {
+      throw new Error(`Error ${userResult.status}: Usuario no encontrado`);
     }
 
-    const userData = await userResponse.json();
+    const userData = await userResult.json();
     const user = userData.data;
 
-    // Mostrar datos del usuario
+    // Mostramos datos del usuario
     document.getElementById('id').textContent = user.id;
     document.getElementById('email').textContent = user.email;
 
-    // 2) CREAR USUARIO (POST)
-    const postResponse = await fetch(POSTMAN_URL, {
+    // Creamos usuario con POST
+    const postResult = await fetch(POSTMAN_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(user),
     });
 
-    const postData = await postResponse.json();
+    const postData = await postResult.json();
     
-    // Mostrar el First Name del usuario creado
+    // Mostramos el First Name del usuario creado
     document.getElementById('name').textContent = postData.json.first_name;
 
-    // 3) Mostrar estado de la operación
-    document.getElementById('status').textContent = postResponse.status;
+    // Mostramos estado de la operación
+    document.getElementById('status').textContent = 200;
   } catch (error) {
     console.error('Error:', error);
     document.getElementById('status').textContent = error.message;
